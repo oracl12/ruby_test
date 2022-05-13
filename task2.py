@@ -1,6 +1,6 @@
 import re
 
-b = """Lorem Ipsum is simply dummy 
+text1 = """Lorem Ipsum is simply dummy 
 text of the printing and typesetting industry. 
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
 when an unknown printer took a galley of type and scrambled 
@@ -10,10 +10,18 @@ It was popularised in the 1960s with the release of Letraset sheets
 containing Lorem Ipsum passages, and more recently with desktop publishing software like 
 Aldus PageMaker including versions of Lorem Ipsum.!?"""
 
+text2 = """
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', 
+making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' 
+will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident,
+sometimes on purpose (injected humour and the like)."""
+
 
 def top3(text, n):
     res_dict = dict()
-    text_cleared = re.sub(r"[?|$|.|?|!|.|,|/|@|\n]", r" ", text).split(" ")  # clearing from special symbols and splitting all the text
+    text_cleared = re.sub(r"[?|$|.|?|!|.|,|/|@|\n|)|(]", r" ", text).split(
+        " ")  # clearing from special symbols and splitting all the text
 
     for i in text_cleared:  # lopping over text
         if i.lower() not in res_dict.keys():  #
@@ -26,11 +34,11 @@ def top3(text, n):
 
     if len(res_dict.keys()) < 3:  # if number of our numbers is less then 3 then returning empty list
         return list()
-
+    print(res_dict)
     return sorted(res_dict, key=res_dict.get, reverse=True)[:n]  # sorting by our values and selecting first n-numbers
 
 
 if __name__ == "__main__":
-    print(top3(b, 3))
-    print(top3(b, 2))
-    print(top3(b, 1))
+    print(top3(text1, 3))
+    print(top3(text1, 2))
+    print(top3(text2, 3))
