@@ -34,7 +34,7 @@ def top3(text, n):
 
     if len(res_dict.keys()) < 3:  # if number of our numbers is less then 3 then returning empty list
         return list()
-    print(res_dict)
+
     return sorted(res_dict, key=res_dict.get, reverse=True)[:n]  # sorting by our values and selecting first n-numbers
 
 
